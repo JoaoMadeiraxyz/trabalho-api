@@ -37,4 +37,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { listUsers, createUser, deleteUser };
+const findUserByCPF = async (req, res) => {
+  try {
+    const cpf = req.params.cpf;
+    const user = await users.findOne({ where: { cpf: cpf } });
+
+    if (!user) {
+      return res.status(404).json({ error: `User with CPF ${cpf} not found!` });
+    }
+
+    res.status(200).send({ ...user });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+module.exports = { listUsers, createUser, deleteUser, findUserByCPF };

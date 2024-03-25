@@ -20,7 +20,7 @@ module.exports = db.define("user", {
     allowNull: false,
   },
   cpf: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
